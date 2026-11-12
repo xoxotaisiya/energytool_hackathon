@@ -1,0 +1,2 @@
+# Optional local semantic search with BAAI/bge-m3.
+sentence-transformers
