@@ -35,6 +35,7 @@ class EnergytoolAI:
             "question": result["answer"] if status == "clarification_needed" else None,
             "sources": sources,
             "session_id": result["state"].session_id,
+            "lead": result["state"].data.get("lead"),
             "debug": debug,
         }
 
@@ -59,7 +60,7 @@ class EnergytoolAI:
             return "error"
         if stage == "clarification":
             return "clarification_needed"
-        if stage == "handoff_offer" or decision.get("wants_human"):
+        if stage in {"handoff_offer", "lead_collecting", "lead_complete"} or decision.get("wants_human"):
             return "handoff"
         if stage == "insufficient_evidence":
             return "no_evidence"

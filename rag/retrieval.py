@@ -32,8 +32,12 @@ from pathlib import Path
 
 import numpy as np
 
-from rag.build_chunks import load_docs, make_chunks
-from rag.retriever import BM25Index
+try:  # Плоский ZIP-сабмит.
+    from build_chunks import load_docs, make_chunks
+    from retriever import BM25Index
+except ImportError:  # Обычный пакет в репозитории.
+    from rag.build_chunks import load_docs, make_chunks
+    from rag.retriever import BM25Index
 
 HERE = Path(__file__).resolve().parent
 
@@ -177,14 +181,23 @@ class Retriever:
     def _make_embedder(mode):
         """Создает локальный или API-клиент эмбеддингов."""
         if mode == "local":
-            from rag.embedder import LocalEmbedder
+            try:
+                from embedder import LocalEmbedder
+            except ImportError:
+                from rag.embedder import LocalEmbedder
             return LocalEmbedder()
-        from rag.embedder import ApiEmbedder
+        try:
+            from embedder import ApiEmbedder
+        except ImportError:
+            from rag.embedder import ApiEmbedder
         return ApiEmbedder()
 
     def _embed_chunks(self, mode):
         """Строит векторы для всех фрагментов базы."""
-        from rag.embedder import chunk_texts, embed_chunks_cached
+        try:
+            from embedder import chunk_texts, embed_chunks_cached
+        except ImportError:
+            from rag.embedder import chunk_texts, embed_chunks_cached
         if mode == "local":
             return embed_chunks_cached(self.embedder, self.chunks)     # кэш на диске, для разработки
         return self.embedder.encode(chunk_texts(self.chunks))

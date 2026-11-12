@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ff0032">
+  <title>Energytool — AI-консультант</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Energytool">
+        <span class="brand-mark" aria-hidden="true">E</span>
+        <span><strong>Energytool</strong><small>AI-консультант</small></span>
+      </a>
+      <div class="top-actions">
+        <label class="debug-switch" title="Показывать время и источники">
+          <input id="debugToggle" type="checkbox">
+          <span class="switch-track"><span></span></span>
+          Режим отладки
+        </label>
+        <button id="newChat" class="secondary-button" type="button">+ Новый диалог</button>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="context-panel">
+        <div>
+          <span class="eyebrow">МТС ENERGYTOOL</span>
+          <h1>Энергия под контролем</h1>
+          <p>Опишите задачу — консультант уточнит детали, найдёт информацию в базе знаний и поможет оформить заявку.</p>
+        </div>
+        <div class="capabilities">
+          <div><span>01</span><p>Учёт энергоресурсов</p></div>
+          <div><span>02</span><p>Контроль потребления</p></div>
+          <div><span>03</span><p>Выявление потерь</p></div>
+        </div>
+        <div class="privacy-note">Для демонстрации используйте только вымышленные контактные данные.</div>
+      </aside>
+
+      <section class="chat-card" aria-label="Чат с консультантом">
+        <div class="chat-heading">
+          <div class="assistant-avatar">AI</div>
+          <div><strong>Консультант Energytool</strong><span><i></i> На связи</span></div>
+          <button id="historyButton" class="icon-button" type="button" aria-label="История диалогов" title="История диалогов">⌁</button>
+        </div>
+
+        <div id="messages" class="messages" aria-live="polite">
+          <article class="message assistant-message welcome-message">
+            <div class="message-label">ENERGYTOOL AI</div>
+            <p>Здравствуйте! Расскажите, какую задачу вы хотите решить. Я отвечаю только по материалам базы знаний Energytool.</p>
+          </article>
+          <div class="suggestions" id="suggestions">
+            <button type="button">Как контролировать потребление?</button>
+            <button type="button">Нужно найти потери энергии</button>
+            <button type="button">Хочу связаться с менеджером</button>
+          </div>
+        </div>
+
+        <section id="debugPanel" class="debug-panel" hidden>
+          <div class="debug-title"><span>DEBUG</span><strong id="debugTime">—</strong></div>
+          <div id="debugContent" class="debug-content">Источники появятся после ответа.</div>
+        </section>
+
+        <form id="chatForm" class="composer">
+          <label class="sr-only" for="messageInput">Сообщение</label>
+          <textarea id="messageInput" rows="1" maxlength="4000" placeholder="Опишите вашу задачу…" required></textarea>
+          <button id="sendButton" type="submit" aria-label="Отправить">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20.4 21.9 12 3 3.6v6.5l13.5 1.9L3 13.9z"/></svg>
+          </button>
+        </form>
+        <div class="composer-note">Ответы формируются ИИ на основе базы знаний и могут требовать проверки специалистом.</div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="historyDialog" class="history-dialog">
+    <div class="dialog-header"><div><span class="eyebrow">АРХИВ</span><h2>История диалогов</h2></div><button id="closeHistory" class="icon-button" aria-label="Закрыть">×</button></div>
+    <div id="historyList" class="history-list"></div>
+  </dialog>
+
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

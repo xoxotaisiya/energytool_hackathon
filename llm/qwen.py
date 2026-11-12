@@ -51,6 +51,7 @@ class LLMClient:
                     "model": config.OLLAMA_MODEL,
                     "messages": messages,
                     "stream": False,
+                    "think": False,
                     "options": {"temperature": config.LLM_TEMPERATURE},
                 }
                 if json_mode:
@@ -71,6 +72,7 @@ class LLMClient:
                     "model": config.LLM_MODEL,
                     "messages": messages,
                     "temperature": config.LLM_TEMPERATURE,
+                    "reasoning_effort": "none",
                 }
                 if json_mode:
                     payload["response_format"] = {"type": "json_object"}
@@ -79,6 +81,14 @@ class LLMClient:
                     headers=headers,
                     json=payload,
                 )
+                if response.status_code in (400, 422):
+                    # Some OpenAI-compatible proxies do not expose reasoning controls.
+                    payload.pop("reasoning_effort", None)
+                    response = self.client.post(
+                        config.LLM_BASE_URL + "/chat/completions",
+                        headers=headers,
+                        json=payload,
+                    )
                 response.raise_for_status()
                 content = response.json()["choices"][0]["message"]["content"]
             else:

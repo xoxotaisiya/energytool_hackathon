@@ -4,3 +4,5 @@ __pycache__/
 .env
 sessions/
 rag/.cache/
+dist/
+submission.csv

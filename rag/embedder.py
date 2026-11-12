@@ -42,8 +42,8 @@ class ApiEmbedder:
         import httpx
         self.base = (os.getenv("LLM_BASE_URL") or os.getenv("OPENAI_BASE_URL") or "").rstrip("/")
         self.key = os.getenv("EMBEDDER_API_KEY") or os.getenv("LLM_API_KEY") or os.getenv("OPENAI_API_KEY", "")
-        self.model_name = os.getenv("EMB_MODEL", "baai/bge-m3")
-        self.client = httpx.Client(timeout=90)
+        self.model_name = os.getenv("EMB_MODEL", "BAAI/bge-m3")
+        self.client = httpx.Client(timeout=90, trust_env=False)
 
     def encode(self, texts, batch_size=32):
         """Преобразует список текстов в векторы."""
