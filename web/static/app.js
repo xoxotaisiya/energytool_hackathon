@@ -9,8 +9,37 @@ const debugTime = document.querySelector('#debugTime');
 const debugContent = document.querySelector('#debugContent');
 const historyDialog = document.querySelector('#historyDialog');
 const historyList = document.querySelector('#historyList');
+const themeToggle = document.querySelector('#themeToggle');
+const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+const THEME_KEY = 'energytool_theme';
 let sessionId = localStorage.getItem('energytool_session_id');
 let busy = false;
+
+function applyTheme(theme, persist = false) {
+  const isDark = theme === 'dark';
+  const activeTheme = isDark ? 'dark' : 'light';
+  document.documentElement.dataset.theme = activeTheme;
+  document.body.dataset.theme = activeTheme;
+  themeToggle.setAttribute('aria-pressed', String(isDark));
+  themeToggle.setAttribute('aria-label', isDark ? 'Включить светлую тему' : 'Включить ночную тему');
+  themeToggle.title = isDark ? 'Светлая тема' : 'Ночная тема';
+  themeToggle.querySelector('.theme-icon').textContent = isDark ? '☀' : '☾';
+  themeToggle.querySelector('.theme-label').textContent = isDark ? 'Светлая тема' : 'Ночная тема';
+  themeColorMeta?.setAttribute('content', isDark ? '#111116' : '#ff0032');
+  if (persist) localStorage.setItem(THEME_KEY, activeTheme);
+}
+
+applyTheme(document.documentElement.dataset.theme);
+
+themeToggle.addEventListener('click', () => {
+  const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  applyTheme(nextTheme, true);
+});
+
+systemTheme.addEventListener('change', (event) => {
+  if (!localStorage.getItem(THEME_KEY)) applyTheme(event.matches ? 'dark' : 'light');
+});
 
 function scrollToBottom() {
   messages.scrollTop = messages.scrollHeight;

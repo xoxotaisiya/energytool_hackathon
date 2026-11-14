@@ -4,8 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ff0032">
+  <script>
+    (() => {
+      const savedTheme = localStorage.getItem('energytool_theme');
+      const theme = savedTheme === 'light' || savedTheme === 'dark'
+        ? savedTheme
+        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
   <title>Energytool — AI-консультант</title>
-  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="/static/styles.css?v=night-theme-2">
 </head>
 <body>
   <div class="app-shell">
@@ -15,6 +24,10 @@
         <span><strong>Energytool</strong><small>AI-консультант</small></span>
       </a>
       <div class="top-actions">
+        <button id="themeToggle" class="theme-button" type="button" aria-label="Включить ночную тему" aria-pressed="false" title="Ночная тема">
+          <span class="theme-icon" aria-hidden="true">☾</span>
+          <span class="theme-label">Ночная тема</span>
+        </button>
         <label class="debug-switch" title="Показывать время и источники">
           <input id="debugToggle" type="checkbox">
           <span class="switch-track"><span></span></span>
@@ -80,6 +93,6 @@
     <div id="historyList" class="history-list"></div>
   </dialog>
 
-  <script src="/static/app.js" defer></script>
+  <script src="/static/app.js?v=night-theme-2" defer></script>
 </body>
 </html>
