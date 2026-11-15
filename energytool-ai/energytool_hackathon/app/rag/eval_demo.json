@@ -1,0 +1,20 @@
+[
+  {"demo_id": 1, "gold": ["solar|Размещение"]},
+  {"demo_id": 2, "gold": ["solar|Размещение"]},
+  {"demo_id": 3, "gold": ["solar|Механизмы оплаты", "general|Можно ли внедрять поэтапно"]},
+  {"demo_id": 4, "gold": ["solar|Размещение", "solar|Не подходит", "product-scope-and-limits|Солнечные"]},
+  {"demo_id": 5, "gold": ["askue|Совместимость"]},
+  {"demo_id": 6, "gold": ["askue|Что видно", "askue|Кому подходит", "askue|Что это"]},
+  {"demo_id": 7, "gold": ["portfolio|Ретейл", "askue|Кому подходит", "askue|Что это"]},
+  {"demo_id": 8, "gold": ["meter-reading|Что распознаётся"]},
+  {"demo_id": 9, "gold": ["meter-reading|Что распознаётся"]},
+  {"demo_id": 10, "gold": ["price-categories|Шесть категорий", "price-categories|Частая ошибка", "tariffs|Что именно растёт", "market|Из чего состоит счёт"]},
+  {"demo_id": 11, "gold": ["faq|реактивная энергия", "power-thresholds|Пороги ниже"]},
+  {"demo_id": 12, "gold": ["orem|Что делает МТС", "orem|Нужно ли менять", "orem|Порог доступа"]},
+  {"demo_id": 13, "gold": ["orem|невыгодно", "general|невыгодно", "calculation-and-requests|Бесплатная предварительная оценка"]},
+  {"demo_id": 14, "gold": ["solar|Два типа станций"]},
+  {"demo_id": 15, "gold": ["askue|Кому подходит", "meter-reading|Кому подходит", "meter-reading|Какую задачу закрывает", "portfolio|Торговый или бизнес-центр"]},
+  {"demo_id": 16, "gold": ["calculation-and-requests|Для поиска коммерческих потерь", "losses|Какой результат даёт продукт"]},
+  {"demo_id": 17, "gold": ["price-categories|Шесть категорий", "price-categories|Частая ошибка", "tariffs|Что именно растёт", "market|Из чего состоит счёт"]},
+  {"demo_id": 18, "gold": ["calculation-and-requests|Для платформы учёта", "askue|Сколько это стоит", "numbers-and-indicators|Платформа учёта"]}
+]

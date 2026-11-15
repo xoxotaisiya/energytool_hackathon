@@ -1,0 +1,23 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+!**/.env.example
+*.pem
+*.key
+# Environments, models and generated files
+.runtime/
+**/.venv/
+**/__pycache__/
+**/.cache/
+*.py[cod]
+.pytest_cache/
+**/sessions/
+test-results/
+**/reports/
+!docs/reports/
+!docs/reports/**
+**/dist/
+*.log
+.DS_Store
+.idea/

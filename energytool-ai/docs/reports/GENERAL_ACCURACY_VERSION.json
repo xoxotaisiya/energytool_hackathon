@@ -1,0 +1,17 @@
+{
+  "runtime_sha256": "fa694fba58cfc96f54427e35c5793e46ca0a91f4db914d4b9ad26ddf37626f0a",
+  "unit_tests_passed": 123,
+  "validation_scenarios": "bot_checks/validation_2026_11_16.json",
+  "full_regression_run": "test-results/20261115T150408Z-all-9d7cc543",
+  "full_regression_runtime_sha256": "2a92b120496b6db88451a699caa2e9b78e6df9ee1e6598ed70d9c06bdb7e06ec",
+  "difference_after_full_run_started": [
+    "Short numeric answer inherits market eligibility task",
+    "Supporting range sources also selected for short power answers",
+    "Schedule-only statement acknowledges facts and clarifies task instead of unrelated product constraint",
+    "Bill diagnosis takes precedence over generic product-price clarification"
+  ],
+  "validation_pending": false,
+  "validation_run": "20261115T151826Z-all-510bca0b",
+  "final_targeted_run": "20261115T151913Z-all-d484242e",
+  "full_regression_is_pre_final_snapshot": true
+}
